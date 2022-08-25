@@ -10,7 +10,6 @@ for header div section*/
 .topHeaderSection{
     display: flex;
     position: relative;
- 
     font-size:26px;
     justify-content: space-between;
     margin: 20px;
@@ -28,68 +27,78 @@ for header div section*/
 }
 /*CSS vaule for middleContainer postion and style*/
 .middleContainer{
-    margin: 0 5px;
-    height: 40px;
-    position: absolute;
-    top: 30%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    margin-left: 25%;
+    margin-right: 25%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 50px;
+    font-family: 'Merienda';font-size: 22px;
     visibility: visible;
-    margin: 80px;
-    padding: 20px;
+    float: center;
 }
 /*CSS vaule for infoTitle*/
-.middleContainer #infoTitle{
+.middleContainer #infoTitle {
     font-size:xx-large;
+    
 }
 /*CSS vaule for paragrph*/
-.middleContainer .paragrph{
-    font-size: medium;
+.middleContainer #quizRule{
+    font-size: large;
+    visibility: visible;
 }
 /*CSS vaule for infoDescription span*/
 #infoDescription{
     font-style: italic;
     color: #277BC0;
 }
-
+#startQuizButton{
+    float: center;
+    position:absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
 /*CSS vaule for buttons*/
 .btn{
     color: white;
     background-color: #781C68;
     font-size: 20px;
-    font-weight: 500;
+    float: center;
     padding: 15px 30px;
     outline: none;
     border: none;
     border-radius:5px ;
     cursor: pointer;
+}
+.middleContainer2{
+    margin-left: 25%;
+    margin-right: 25%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 50px;
+    font-family: 'Merienda';font-size: 22px;
+    visibility: visible;
+    float: center;
 
 }
-
-
-/*CSS vaule for questionBox*/
-.questionBox{
-width: 540px;
-background: #fff;
-border-radius: 5px;
-position: absolute;
-top: 30%;
-left: 50%;
-transform: translate(-50%, -50%);
-display: flex;
-border: solid;
-
+.allDone{
+  position: absolute;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 50px;
+    font-family: 'Merienda';font-size: 22px;
+    visibility: visible;
+    float: center;
+    transform: translate(-10%, -100%);
+    border: solid;
 }
 
-#questionTitle {
-height: 60px;
-width: 100px;
-align-items: center;
-padding: 0 35px;
-font-size: 40px;
-font-weight: 500;
-}
-
-.questionBox #answerChoice{
-    border-bottom: 20px solid lightgrey;
+#sec1{
+    visibility: visible;
 }

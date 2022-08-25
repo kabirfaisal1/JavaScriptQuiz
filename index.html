@@ -9,7 +9,7 @@
             alt="jsfavicon"> </link>
     </head>
     <body>
-        <div class="topContainer">
+    
             <header class="topHeaderSection">
                 <div class="headerParagraph">
                     <p id="headerScoreText">View high score: <span
@@ -22,32 +22,44 @@
                     </p>
                 </div>
             </header>
-        </div>
-        <div class="middleContainer">
-            <h1 class="headerTitle" id="infoTitle">Coding Quiz Challenge</h1>
-            <p class="paragrph">Try to answer the following code-related questions with the time limit. Keep in mind that incorrect answers will penalize your score/time 
-               by <span class="innerText" id="infoDescription">ten seconds!</span> 
-            </p>
-            <button class= "btn" id="startQuizbtn">Start Quiz</button>
-        </div>
-        <div class="questionBox">
-            <h1 class="headerTitle" id="questionTitle">ToDo</h1>
-            <div id="answerChoice">
-                <ul>
-                    <li>1</li>
-                    <li>2</li>
-                    <li>3</li>
-                    <li>4</li>
-                </ul>   
+            <div class="middleContainer">
+                <h1 class="headerTitle" id="infoTitle">Coding Quiz Challenge</h1>
+                <p class="paragrph" id="quizRule">Try to answer the following code-related questions with the time limit. Keep in mind that incorrect answers will penalize your score/time 
+                by <span class="innerText" id="infoDescription">ten seconds!</span> 
+                </p>
+                <div id="startQuizButton"> <button class= "btn" id="startQuizbtn">Start Quiz</button> </div>     
             </div>
-        </div>
-        <div class="resultBox">
-            <h1 class="headerTitle" id="resultBoxTitle">All done!</h1>
-            <p id="finalScore">Your final score is <span class="innerText" id="finalInnerScore">xxx</span>  </p>
-            <label for="input">Enter initials</label> <input type="input" id="inputInitials">
-            <button class= "btn" id="submitQuizbtn">Submit</button>
-        </div>
+            <div class="middleContainer2">
+                <section id="sec1">
+                    <h1 class="headerTitle" id="question"></h1>
+                    <button class="btn" id="answer1"></button>
+        
+                    <button class="btn" id="answer2"></button>
+
+                    <button class="btn" id="answer3"></button>
+                    
+                    <button class="btn" id="answer4"></button>
+                </section>
+
+                <h1 class="headerTitle" id="allDone">All done!</h1>
+           
+              
+            </div>
+          <!-- <div id="gridContainer">
+                <p id="finalScoreDisplay"></p>
+                <p id="enterInitials"></p>
+                <textarea id=enterInitialsTextArea></textarea>
+                <button class="btn" id="answer1"></button>
+                <button class="btn" id="answer2"></button>
+                <button class="btn" id="answer3"></button>
+                <button class="btn" id="answer4"></button>
+                <button class="btn" id="submitScore"></button> Grid nows where to put next item.
+            </div>
+            <div id="answerCorrectWrongGrid"></div>
+            <p id=answerCorrectWrong></p>-->
+       
     </body>
-         
+        <!-- <script src="../JavaScriptQuiz/assests/js/script.js"></script>-->
+         <script src="../JavaScriptQuiz/assests/js/script.js"></script>
   
 </html>
