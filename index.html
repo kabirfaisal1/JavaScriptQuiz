@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link href="../JavaScriptQuiz/assests/css/style.css" rel="stylesheet">
+        <title>JSQuiz</title>
+        <link class="tabIcon" rel="icon" type="image/x-icon"
+            href="../JavaScriptQuiz/assests/images/jsfavicon.png"
+            alt="jsfavicon"> </link>
+    </head>
+    <body>
+        <div class="topContainer">
+            <header class="topHeaderSection">
+                <div class="headerParagraph">
+                    <p id="headerScoreText">View high score: <span
+                        class="innerText" id="highScore">xxx</span>
+                    </p>
+                </div>
+                <div class="headerParagraph" >
+                    <p id="quizTimerTitle">Timer: <span
+                        class="innerText" id="timeLeft">xxx</span>
+                    </p>
+                </div>
+            </header>
+        </div>
+        <div class="middleContainer">
+            <h1 class="headerTitle" id="infoTitle">Coding Quiz Challenge</h1>
+            <p class="paragrph">Try to answer the following code-related questions with the time limit. Keep in mind that incorrect answers will penalize your score/time 
+               by <span class="innerText" id="infoDescription">ten seconds!</span> 
+            </p>
+            <button class= "btn" id="startQuizbtn">Start Quiz</button>
+        </div>
+        <div class="questionBox">
+            <h1 class="headerTitle" id="questionTitle">ToDo</h1>
+            <div id="answerChoice">
+                <ul>
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                </ul>   
+            </div>
+        </div>
+        <div class="resultBox">
+            <h1 class="headerTitle" id="resultBoxTitle">All done!</h1>
+            <p id="finalScore">Your final score is <span class="innerText" id="finalInnerScore">xxx</span>  </p>
+            <label for="input">Enter initials</label> <input type="input" id="inputInitials">
+            <button class= "btn" id="submitQuizbtn">Submit</button>
+        </div>
+    </body>
+         
+  
+</html>

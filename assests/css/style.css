@@ -1,0 +1,95 @@
+/*CSS vaule for body  tag: this property will controll the background margining */
+body {
+    margin:0;
+    max-width: 1366px;
+    font-family: Verdana, Arial, Tahoma, Serif;
+}
+
+/*CSS vaule for header Div Section: this property will controll the background color
+for header div section*/
+.topHeaderSection{
+    display: flex;
+    position: relative;
+ 
+    font-size:26px;
+    justify-content: space-between;
+    margin: 20px;
+    padding: 20px;
+
+}
+/*CSS vaule for headerScoreText font color*/
+#headerScoreText{
+    color: #781C68 ;
+}
+/*CSS vaule for to hide highScore and timeLeft inner text*/
+#headerScoreText #highScore, #timeLeft , .resultBox{
+    visibility: hidden;
+    color: black;
+}
+/*CSS vaule for middleContainer postion and style*/
+.middleContainer{
+    margin: 0 5px;
+    height: 40px;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    visibility: visible;
+    margin: 80px;
+    padding: 20px;
+}
+/*CSS vaule for infoTitle*/
+.middleContainer #infoTitle{
+    font-size:xx-large;
+}
+/*CSS vaule for paragrph*/
+.middleContainer .paragrph{
+    font-size: medium;
+}
+/*CSS vaule for infoDescription span*/
+#infoDescription{
+    font-style: italic;
+    color: #277BC0;
+}
+
+/*CSS vaule for buttons*/
+.btn{
+    color: white;
+    background-color: #781C68;
+    font-size: 20px;
+    font-weight: 500;
+    padding: 15px 30px;
+    outline: none;
+    border: none;
+    border-radius:5px ;
+    cursor: pointer;
+
+}
+
+
+/*CSS vaule for questionBox*/
+.questionBox{
+width: 540px;
+background: #fff;
+border-radius: 5px;
+position: absolute;
+top: 30%;
+left: 50%;
+transform: translate(-50%, -50%);
+display: flex;
+border: solid;
+
+}
+
+#questionTitle {
+height: 60px;
+width: 100px;
+align-items: center;
+padding: 0 35px;
+font-size: 40px;
+font-weight: 500;
+}
+
+.questionBox #answerChoice{
+    border-bottom: 20px solid lightgrey;
+}
