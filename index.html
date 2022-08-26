@@ -12,13 +12,13 @@
     
             <header class="topHeaderSection">
                 <div class="headerParagraph">
-                    <p id="headerScoreText">View high score: <span
-                        class="innerText" id="highScore">xxx</span>
+                    <p id="headerScoreText">High Score: <span
+                        class="innerText" id="highScore"></span>
                     </p>
                 </div>
                 <div class="headerParagraph" >
                     <p id="quizTimerTitle">Timer: <span
-                        class="innerText" id="timeLeft">xxx</span>
+                        class="innerText" id="timeLeft"></span>
                     </p>
                 </div>
             </header>
@@ -30,22 +30,20 @@
                 <div id="startQuizButton"> <button class= "btn" id="startQuizbtn">Start Quiz</button> </div>     
             </div>
             <div class="questonList">
-                <section id="sec1">
-                    <h1 class="headerTitle" id="question"></h1>
-                    <button class="btn" id="answer1"></button>
-        
-                    <button class="btn" id="answer2"></button>
-
-                    <button class="btn" id="answer3"></button>
-                    
-                    <button class="btn" id="answer4"></button>
-                </section>
-
-                <h1 class="headerTitle" id="allDone">All done!</h1>
-           
               
+                <h1 class="headerTitle" id="question"></h1>
+                <ul>
+                    <li><button class="answerbtn" id="answer1"></button></li>
+                    <li><button class="answerbtn" id="answer2"></button></li>
+                    <li><button class="answerbtn" id="answer3"></button></li>
+                    <li><button class="answerbtn" id="answer4"></button></li>
+                      
+                </ul>
+                <p id="correctOrWrong"></p>
             </div>
           <!-- <div id="gridContainer">
+              <h1 class="headerTitle" id="allDone">All done!</h1> 
+           
                 <p id="finalScoreDisplay"></p>
                 <p id="enterInitials"></p>
                 <textarea id=enterInitialsTextArea></textarea>
