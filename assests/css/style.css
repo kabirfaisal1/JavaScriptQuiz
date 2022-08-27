@@ -106,6 +106,9 @@ background-repeat: no-repeat;
 background-position: 100% .4em;
 padding-right: .6em;
 margin: 1em 0;
+color: white;
+background-color: #781C68;
+cursor: pointer;
 }
 
 #correctOrWrong{
