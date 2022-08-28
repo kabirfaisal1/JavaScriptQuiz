@@ -1,14 +1,23 @@
-
+//Selecters
 var startQuizButtonEl = document.getElementById("startQuizButton");
 var quizInfoEl = document.querySelector(".middleContainer");
 var questonListEl = document.querySelector(".questonList")
-//selecting dom element for question Title
-var questionTitleEl = document.getElementById("question");
+var questionTitleEl = document.getElementById("questionTitle");
 var multipleChoiceBtnEl = document.querySelectorAll(".answerbtn");
 var choiceRosponEl = document.getElementById("correctOrWrong");
 var scoreEl = document.getElementById("highScore");
-var headerScoreTextEl = document.getElementById("headerScoreText")
+var headerScoreTextEl = document.getElementById("headerScoreText");
+var timerEl = document.getElementById("timeLeft");
+
+
+//global varable 
 var score = null;
+var answer = null;
+var point = 25;
+var timeLeft = 60;
+var arrayNum = null;
+
+
 var questionsArray = [
     {
         questionTitle: "JavaScript written under which of the following tag",
@@ -40,7 +49,7 @@ startQuizButtonEl.addEventListener("click", () => {
 
 function startQuiz() {
     score = null;
-    point = 25;
+
     console.log("we are inside startQuiz function");
     quizInfoEl.style.setProperty("visibility", "hidden"); //hiding the info
     questonListEl.style.setProperty("visibility", "visible"); //displaying the question box
@@ -50,40 +59,49 @@ function startQuiz() {
     console.log("we are inside startQuiz function: set the visibility for elemnts");
     var question = null;
     var answer = null;
-    /* --This is Good__
+
     for (var i = 0; i < questionsArray.length; i--) {
         console.log("we are inside startQuiz function: iterating through the questionsArray");
 
         questionTitleEl.textContent = questionsArray[i].questionTitle;
         console.log("we are inside startQuiz function: set the questionTitle by the iterative");
-
-        multipleChoiceBtnEl.forEach(function (element, index) {
-            element.textContent = questionsArray[i].choiceList[index];
-            console.log(questionsArray[i].choiceList[index]);
+        return array=i;
+        break;
+    }
+        multipleChoiceBtnEl.forEach( (element, index) =>{
+            displayMultipleChoice(element, index);
+          
         })
-
-        var answer = questionsArray[i].correctAnswer;
         var answerChoiceListEl = document.querySelector(".answerList");
-        answerChoiceListEl.addEventListener("click", function (event) {
-            var element = event.target;
-            if (element.matches(".answerbtn")) {
-                var dataNumber = parseInt(element.getAttribute("data-number"));
-
-                console.log(`inside userSelect function: ${dataNumber}`);
-                if (dataNumber == answer) {
-                    choiceRosponEl.textContent = "Correct";
-                    console.log("correct");
-                    score++;
-                    scoreEl.textContent = score * point;
-                }
-                else {
-                    choiceRosponEl.textContent = "Wrong";
-                }
-            }
+        answerChoiceListEl.addEventListener("click", (event) => {
+            validatingAnswer(event);
         })
 
 
-    }*/
+}
 
+
+function  displayMultipleChoice(element, index){
+    element.textContent = questionsArray[array].choiceList[index];
+    console.log(questionsArray[array].choiceList[index]);
+    return answer = questionsArray[array].correctAnswer;
+}
+
+function validatingAnswer(event) {
+    var element = event.target;
+    if (element.matches(".answerbtn")) {
+        var dataNumber = parseInt(element.getAttribute("data-number"));
+
+        console.log(`inside userSelect function: ${dataNumber}`);
+        if (dataNumber == answer) {
+            choiceRosponEl.textContent = "Correct";
+            console.log("correct");
+            score++;
+            scoreEl.textContent = score * point;
+        }
+        else {
+            choiceRosponEl.textContent = "Wrong";
+        }
+    }
 }
 
