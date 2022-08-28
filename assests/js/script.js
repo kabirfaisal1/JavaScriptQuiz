@@ -62,15 +62,12 @@ function startQuiz() {
 
     for (var i = 0; i < questionsArray.length; i--) {
         console.log("we are inside startQuiz function: iterating through the questionsArray");
-
         questionTitleEl.textContent = questionsArray[i].questionTitle;
         console.log("we are inside startQuiz function: set the questionTitle by the iterative");
         return array=i;
-        break;
     }
         multipleChoiceBtnEl.forEach( (element, index) =>{
             displayMultipleChoice(element, index);
-          
         })
         var answerChoiceListEl = document.querySelector(".answerList");
         answerChoiceListEl.addEventListener("click", (event) => {
