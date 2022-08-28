@@ -7,6 +7,7 @@ var multipleChoiceBtnEl = document.querySelectorAll(".answerbtn");
 var choiceRosponEl = document.getElementById("correctOrWrong");
 var scoreEl = document.getElementById("highScore");
 var headerScoreTextEl = document.getElementById("headerScoreText");
+var answerChoiceListEl = document.querySelector(".answerList");
 var timerEl = document.getElementById("timeLeft");
 
 
@@ -62,6 +63,7 @@ function startQuiz() {
     var question = null;
     var answer = null;
     renderQuizQuestion();
+ 
    /* for (var i = 0; i < questionsArray.length; i--) {
         console.log("we are inside startQuiz function: iterating through the questionsArray");
         questionTitleEl.textContent = questionsArray[i].questionTitle;
@@ -83,18 +85,27 @@ function startQuiz() {
 
 }
 function renderQuizQuestion(){
-    var qDisplayed = questionsArray[currentQuestionIndex];
-    console.log(qDisplayed);
-    displayMultipleChoice();
+    var qDisplayed = questionsArray[currentQuestionIndex]; //getting the current question to queue
+    if(currentQuestionIndex < questionsArray.length ){
+    questionTitleEl.textContent = qDisplayed.questionTitle; //display the question on the header
+    displayMultipleChoice(qDisplayed.choiceList); //display all the Multiple Choice on the answerList
+    //add Event Listener for user selected choice
+    answerChoiceListEl.addEventListener("click", (event) =>{  
+    answer =qDisplayed.correctAnswer; //setting the correctAnswer
+    validatingAnswer(answer,event);})  //function for  validating Answer after selection
+    currentQuestionIndex++;
+    }
 }
 
-function  displayMultipleChoice(element, index){
-    element.textContent = questionsArray[array].choiceList[index];
-    console.log(questionsArray[array].choiceList[index]);
-    return answer = questionsArray[array].correctAnswer;
+//display all the Choice UI
+function  displayMultipleChoice(qDisplayed){
+    multipleChoiceBtnEl.forEach( (element, index) =>{
+        element.textContent = qDisplayed[index];
+    })
 }
 
-function validatingAnswer(event) {
+//function for  validating Answer after selection
+function validatingAnswer(answer,event) {
     var element = event.target;
     if (element.matches(".answerbtn")) {
         var dataNumber = parseInt(element.getAttribute("data-number"));
@@ -104,11 +115,10 @@ function validatingAnswer(event) {
             choiceRosponEl.textContent = "Correct";
             console.log("correct");
             score++;
-            scoreEl.textContent = score * point;
+            return scoreEl.textContent = score * point;
         }
         else {
-            choiceRosponEl.textContent = "Wrong";
+            return choiceRosponEl.textContent = "Wrong";
         }
     }
 }
-
