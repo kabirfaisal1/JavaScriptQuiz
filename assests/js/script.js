@@ -10,12 +10,6 @@ var headerScoreTextEl = document.getElementById("headerScoreText");
 var timerEl = document.getElementById("timeLeft");
 
 
-//global varable 
-var score = null;
-var answer = null;
-var point = 25;
-var timeLeft = 60;
-var arrayNum = null;
 
 
 var questionsArray = [
@@ -43,6 +37,15 @@ var questionsArray = [
 ]
 
 
+//global varable 
+var score = null;
+var answer = null;
+var point = 25;
+var timeLeft = 60;
+var arrayNum = null;
+var lastQuestionIndex = questionsArray.length-1; //this to get that last index of questionsArray
+var currentQuestionIndex =0; //this to get that current (running) index of questionsArray
+
 startQuizButtonEl.addEventListener("click", () => {
     startQuiz();
 })
@@ -59,20 +62,25 @@ function startQuiz() {
     console.log("we are inside startQuiz function: set the visibility for elemnts");
     var question = null;
     var answer = null;
-
-    for (var i = 0; i < questionsArray.length; i--) {
+    var lastQuestionIndex = questionsArray.length-1;
+    var currentQuestionIndex =0
+   /* for (var i = 0; i < questionsArray.length; i--) {
         console.log("we are inside startQuiz function: iterating through the questionsArray");
         questionTitleEl.textContent = questionsArray[i].questionTitle;
         console.log("we are inside startQuiz function: set the questionTitle by the iterative");
-        return array=i;
-    }
+        array=i;
         multipleChoiceBtnEl.forEach( (element, index) =>{
             displayMultipleChoice(element, index);
+
         })
+
         var answerChoiceListEl = document.querySelector(".answerList");
         answerChoiceListEl.addEventListener("click", (event) => {
-            validatingAnswer(event);
+        validatingAnswer(event);
         })
+      
+    }
+     */
 
 
 }
