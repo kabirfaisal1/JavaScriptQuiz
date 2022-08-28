@@ -58,12 +58,10 @@ function startQuiz() {
     questonListEl.style.setProperty("visibility", "visible"); //displaying the question box
     choiceRosponEl.style.setProperty("visibility", "visible");//displaying the question footer
 
-    //answebtn1.setProperty("visibility","visible");
     console.log("we are inside startQuiz function: set the visibility for elemnts");
     var question = null;
     var answer = null;
-    var lastQuestionIndex = questionsArray.length-1;
-    var currentQuestionIndex =0
+    renderQuizQuestion();
    /* for (var i = 0; i < questionsArray.length; i--) {
         console.log("we are inside startQuiz function: iterating through the questionsArray");
         questionTitleEl.textContent = questionsArray[i].questionTitle;
@@ -84,7 +82,11 @@ function startQuiz() {
 
 
 }
-
+function renderQuizQuestion(){
+    var qDisplayed = questionsArray[currentQuestionIndex];
+    console.log(qDisplayed);
+    displayMultipleChoice();
+}
 
 function  displayMultipleChoice(element, index){
     element.textContent = questionsArray[array].choiceList[index];
