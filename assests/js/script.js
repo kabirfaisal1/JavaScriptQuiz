@@ -48,7 +48,9 @@ function startQuiz() {
 
     //answebtn1.setProperty("visibility","visible");
     console.log("we are inside startQuiz function: set the visibility for elemnts");
-
+    var question = null;
+    var answer = null;
+    /* --This is Good__
     for (var i = 0; i < questionsArray.length; i--) {
         console.log("we are inside startQuiz function: iterating through the questionsArray");
 
@@ -81,7 +83,7 @@ function startQuiz() {
         })
 
 
-    }
+    }*/
 
 }
 
