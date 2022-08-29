@@ -84,12 +84,12 @@ button{
     flex-wrap: wrap;
 
 }
-.allDone{
+.scoreCard{
     position: absolute;
-    top: 30%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    visibility: visible;
+    visibility: hidden;
     float: center;
 }
 
@@ -122,4 +122,8 @@ li:hover , button:hover{
     visibility: hidden;
     font-size: xx-large;
     color: gray;
+}
+.submitQuizbtn{
+    height:100%;
+    width:100%;
 }

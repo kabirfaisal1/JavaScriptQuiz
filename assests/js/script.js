@@ -9,9 +9,9 @@ var scoreEl = document.getElementById("highScore");
 var headerScoreTextEl = document.getElementById("headerScoreText");
 var answerChoiceListEl = document.querySelector(".answerList");
 var timerEl = document.getElementById("timeLeft");
-
-
-
+var scoreCardEl = document.querySelector(".scoreCard")
+var yourFinalScoreEl = document.getElementById("yourFinalScore")
+var scoreStickerEl = document.getElementById("scoreSticker");
 
 var questionsArray = [
     {
@@ -38,23 +38,20 @@ var questionsArray = [
 
 
 //global varable 
-var score = null;
+var score = 0;
 var answer = null;
-var point = 25;
-var timeLeft = 60;
-var arrayNum = null;
-var lastQuestionIndex = questionsArray.length; //this to get that last index of questionsArray
-var runningQuestionIndex = 0; //this to get that current (running) index of questionsArray
-var count = 0;
+var timeLeft=60;
+var lastQuestionIndex = questionsArray.length-1; //this to get that last index of questionsArray
+var runningQuestion = 0; //this to get that current (running) index of questionsArray
 var timeInterval;
+
 
 startQuizButtonEl.addEventListener("click", () => {
     startQuiz();
 })
 
 function startQuiz() {
-    score = null;
-
+ 
     console.log("we are inside startQuiz function");
     quizInfoEl.style.setProperty("visibility", "hidden"); //hiding the info
     questonListEl.style.setProperty("visibility", "visible"); //displaying the question box
@@ -65,79 +62,72 @@ function startQuiz() {
     renderQuizQuestion();
 }
 function renderQuizQuestion() {
-    var qDisplayed = questionsArray[runningQuestionIndex]; //getting the current question to queue
+    var qDisplayed = questionsArray[runningQuestion]; //getting the current question to queue
 
     questionTitleEl.textContent = qDisplayed.questionTitle; //display the question on the header
     displayMultipleChoice(); //display all the Multiple Choice on the answerList
     //add Event Listener for user selected choice
-    answer = qDisplayed.correctAnswer; //setting the correctAnswer
-    answerChoiceListEl.addEventListener("click", (event) => {
-        
-        validatingAnswer(answer,event);
-    })  //function for  validating Answer after selection
+    //answer = qDisplayed.correctAnswer; //setting the correctAnswer
+        answerChoiceListEl.addEventListener("click", (event) => {
+            validatingAnswer(event);
+        //validatingAnswer(answer,event);
+        })  //function for  validating Answer after selection
 
 }
 
 //display all the options UI
 function displayMultipleChoice() {
     multipleChoiceBtnEl.forEach((element, index) => {
-        element.textContent = questionsArray[runningQuestionIndex].choiceList[index];
+        element.textContent = questionsArray[runningQuestion].choiceList[index];
     })
 }
 
 //function for  validating Answer after selection
-function validatingAnswer(answer,event) {
+function validatingAnswer(event) {
     var element = event.target;
+       var answer = questionsArray[runningQuestion].correctAnswer; //setting the correctAnswer
     if (element.matches(".answerbtn")) {
         var dataNumber = parseInt(element.getAttribute("data-number"));
         console.log(`inside userSelect function: ${dataNumber}`);
         if(answer ==  dataNumber) {
             choiceRosponEl.textContent = "Correct";
-            console.log("correct");
             score++;
-            scoreEl.textContent = score * point;
+            var finalScore = Math.round(100 * score/questionsArray.length);
+            scoreEl.textContent = finalScore;
         }
         else {
             choiceRosponEl.textContent = "Wrong";
             console.log("Wrong");
-            scoreEl.textContent = score * point;
+          
             timeLeft = timeLeft-10;
         }
-        if(lastQuestionIndex > runningQuestionIndex){
-            runningQuestionIndex++;
-            renderQuizQuestion();
+        if(runningQuestion < lastQuestionIndex ){
+            runningQuestion++;
+            renderQuizQuestion(finalScore);
         }
         else{
             clearInterval(timeInterval);
-            scoreRender();
+            scorecardRender();
         }
     }
+
 }
 
-/*function validatingAnswer(answer) {
-    if (questionsArray[runningQuestionIndex].correctAnswer == answer) {
-        choiceRosponEl.textContent = "Correct";
-        console.log("correct");
-        score++;
-        scoreEl.textContent = score * point;
-    }
-    else {
-        choiceRosponEl.textContent = "Wrong";
-        console.log("Wrong");
-        scoreEl.textContent = score * point;
-        timeLeft = timeLeft - 10;
-    }
-
-    if (runningQuestionIndex < lastQuestionIndex) {
-        runningQuestionIndex++;
-        renderQuizQuestion();
-    } else {
-        clearInterval(timeInterval);
-        scoreRender();
-    }
-}*/
-function scoreRender() {
+//this function is to display the scorecard
+function scorecardRender(finalScore) {
     console.log("inside scoreRender");
+    questonListEl.style.setProperty("visibility", "hidden"); //hide the question box
+    choiceRosponEl.style.setProperty("visibility", "hidden");//hide the question footer
+    scoreCardEl.style.setProperty("visibility", "visible");//display scorecard
+    //calculate the amount of question percent
+    var scorePerCent = Math.round(100 * score/questionsArray.length);
+    yourFinalScoreEl.textContent = scorePerCent;
+
+    //choose the img based on the scorepercent
+    let img =(scorePerCent >= 80) ? "../JavaScriptQuiz/assests/images/pass.png": 
+             (scorePerCent >= 65) ? "../JavaScriptQuiz/assests/images/pass.png": 
+             (scorePerCent <= 50) ? "../JavaScriptQuiz/assests/images/pass.png": 
+    scoreStickerEl.textContent = scorePerCent;
 }
 
 function countdown() {
