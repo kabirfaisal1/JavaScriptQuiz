@@ -19,7 +19,6 @@ var questionsArray = [
         choiceList: ["<JavaScript></JavaScript>", "<script></script>", "<code></code>", "<head></head>"],
         correctAnswer: 1
     },
-
     {
         questionTitle: "A variable in JavaScript declared with which of the following keyword?",
         choiceList: ["new", "int", "string", "var"],
@@ -46,6 +45,7 @@ var timeLeft = 60;
 var arrayNum = null;
 var lastQuestionIndex = questionsArray.length-1; //this to get that last index of questionsArray
 var currentQuestionIndex =0; //this to get that current (running) index of questionsArray
+var count=0;
 
 startQuizButtonEl.addEventListener("click", () => {
     startQuiz();
@@ -53,48 +53,25 @@ startQuizButtonEl.addEventListener("click", () => {
 
 function startQuiz() {
     score = null;
-
+  
     console.log("we are inside startQuiz function");
     quizInfoEl.style.setProperty("visibility", "hidden"); //hiding the info
     questonListEl.style.setProperty("visibility", "visible"); //displaying the question box
     choiceRosponEl.style.setProperty("visibility", "visible");//displaying the question footer
-
     console.log("we are inside startQuiz function: set the visibility for elemnts");
-    var question = null;
-    var answer = null;
+    countdown();
     renderQuizQuestion();
- 
-   /* for (var i = 0; i < questionsArray.length; i--) {
-        console.log("we are inside startQuiz function: iterating through the questionsArray");
-        questionTitleEl.textContent = questionsArray[i].questionTitle;
-        console.log("we are inside startQuiz function: set the questionTitle by the iterative");
-        array=i;
-        multipleChoiceBtnEl.forEach( (element, index) =>{
-            displayMultipleChoice(element, index);
-
-        })
-
-        var answerChoiceListEl = document.querySelector(".answerList");
-        answerChoiceListEl.addEventListener("click", (event) => {
-        validatingAnswer(event);
-        })
-      
-    }
-     */
-
-
 }
 function renderQuizQuestion(){
     var qDisplayed = questionsArray[currentQuestionIndex]; //getting the current question to queue
-    if(currentQuestionIndex < questionsArray.length ){
+   
     questionTitleEl.textContent = qDisplayed.questionTitle; //display the question on the header
     displayMultipleChoice(qDisplayed.choiceList); //display all the Multiple Choice on the answerList
     //add Event Listener for user selected choice
     answerChoiceListEl.addEventListener("click", (event) =>{  
     answer =qDisplayed.correctAnswer; //setting the correctAnswer
     validatingAnswer(answer,event);})  //function for  validating Answer after selection
-    currentQuestionIndex++;
-    }
+    
 }
 
 //display all the Choice UI
@@ -115,10 +92,43 @@ function validatingAnswer(answer,event) {
             choiceRosponEl.textContent = "Correct";
             console.log("correct");
             score++;
-            return scoreEl.textContent = score * point;
+            scoreEl.textContent = score * point;
         }
         else {
-            return choiceRosponEl.textContent = "Wrong";
+            choiceRosponEl.textContent = "Wrong";
+            console.log("Wrong");
+            scoreEl.textContent = score * point;
+            timeLeft = timeLeft-10;
         }
     }
+    if(currentQuestionIndex < lastQuestionIndex){
+        currentQuestionIndex++;
+        renderQuizQuestion();
+    }else{
+        clearInterval(Timer);
+    }
 }
+
+function countdown(){
+   // Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
+   var timeInterval = setInterval(function () {
+    // As long as the `timeLeft` is greater than 1
+    if (timeLeft > 1) {
+      // Set the `textContent` of `timerEl` to show the remaining seconds
+      timerEl.textContent = timeLeft;
+      // Decrement `timeLeft` by 1
+      timeLeft--;
+    } else if (timeLeft === 1) {
+      // When `timeLeft` is equal to 1, rename to 'second' instead of 'seconds'
+      timerEl.textContent = timeLeft;
+      timeLeft--;
+    } else {
+      // Once `timeLeft` gets to 0, set `timerEl` to an empty string
+      timerEl.textContent = '';
+      // Use `clearInterval()` to stop the timer
+      clearInterval(timeInterval);
+      // Call the `displayMessage()` function
+    }
+  }, 1000);
+}
+
