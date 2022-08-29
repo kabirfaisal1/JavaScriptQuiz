@@ -2,6 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="../JavaScriptQuiz/assests/css/style.css" rel="stylesheet">
         <title>JSQuiz</title>
         <link class="tabIcon" rel="icon" type="image/x-icon"
@@ -30,31 +31,15 @@
                 <div id="startQuizButton"> <button class= "btn" id="startQuizbtn">Start Quiz</button> </div>     
             </div>
             <div class="questonList">
-              
-                <h1 class="headerTitle" id="question"></h1>
-                <ul>
-                    <li><button class="answerbtn" id="answer1"></button></li>
-                    <li><button class="answerbtn" id="answer2"></button></li>
-                    <li><button class="answerbtn" id="answer3"></button></li>
-                    <li><button class="answerbtn" id="answer4"></button></li>
-                      
+                <h1 class="headerTitle" id="questionTitle"></h1>
+                <ul class="answerList">
+                <li class="answerbtn" id="answer1" data-number="0"> </li>
+                <li class="answerbtn" id="answer2" data-number="1">  </li>
+                <li class="answerbtn" id="answer3" data-number="2">  </li>
+                <li class="answerbtn" id="answer4" data-number="3"> </li>
                 </ul>
-                <p id="correctOrWrong"></p>
+                <footer id="correctOrWrong"></footer> 
             </div>
-          <!-- <div id="gridContainer">
-              <h1 class="headerTitle" id="allDone">All done!</h1> 
-           
-                <p id="finalScoreDisplay"></p>
-                <p id="enterInitials"></p>
-                <textarea id=enterInitialsTextArea></textarea>
-                <button class="btn" id="answer1"></button>
-                <button class="btn" id="answer2"></button>
-                <button class="btn" id="answer3"></button>
-                <button class="btn" id="answer4"></button>
-                <button class="btn" id="submitScore"></button> Grid nows where to put next item.
-            </div>
-            <div id="answerCorrectWrongGrid"></div>
-            <p id=answerCorrectWrong></p>-->
        
     </body>
         <!-- <script src="../JavaScriptQuiz/assests/js/script.js"></script>-->

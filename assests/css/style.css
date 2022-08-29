@@ -72,6 +72,7 @@ button{
     border-radius:5px ;
     cursor: pointer;
 }
+
 .questonList{ 
     position: absolute;
     margin-top: 70px;
@@ -106,6 +107,14 @@ background-repeat: no-repeat;
 background-position: 100% .4em;
 padding-right: .6em;
 margin: 1em 0;
+color: white;
+background-color: #781C68;
+cursor: pointer;
+border-radius: 5px;
+text-align: justify;
+}
+li:hover , button:hover{
+    background:  #AF7AB3;
 }
 
 #correctOrWrong{
