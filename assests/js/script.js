@@ -192,35 +192,3 @@ function countdown() {
         }
     }, 1000);
 }
-
-/*TO-DO
-function validatingAnswer(event) {
-    var element = event.target;
-    var answer = questionsArray[runningQuestion].correctAnswer; //setting the correctAnswer
-    if (element.matches(".answerbtn")) {
-        var dataNumber = parseInt(element.getAttribute("data-number"));
-        console.log(`inside userSelect function: ${dataNumber}`);
-        if (answer == dataNumber) {
-            choiceRosponEl.textContent = "Correct";
-            score++;
-            var finalScore = Math.round(100 * score / questionsArray.length);
-            scoreEl.textContent = finalScore;
-        }
-        else {
-            choiceRosponEl.textContent = "Wrong";
-            console.log("Wrong");
-            timeLeft = timeLeft - 10;
-            var finalScore = Math.round(100 * score / questionsArray.length);
-            scoreEl.textContent = finalScore;
-        }
-        if (runningQuestion < lastQuestionIndex) {
-            runningQuestion++;
-            renderQuizQuestion(finalScore);
-        }
-        else {
-            clearInterval(timeInterval);
-            scorecardRender();
-        }
-    }
-}*/
-
