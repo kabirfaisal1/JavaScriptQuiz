@@ -1,19 +1,23 @@
 
 //Selecters
-var startQuizButtonEl = document.getElementById("startQuizButton");
+var startQuizButtonEl = document.getElementById("startQuizbtn");
 var quizInfoEl = document.querySelector(".middleContainer");
 var questonListEl = document.querySelector(".questonList")
 var questionTitleEl = document.getElementById("questionTitle");
 var multipleChoiceBtnEl = document.querySelectorAll(".answerbtn");
 var choiceRosponEl = document.getElementById("correctOrWrong");
-var scoreEl = document.getElementById("highScore");
+var innerHighScoreEl = document.getElementById("innerhighScore");
 var headerScoreTextEl = document.getElementById("headerScoreText");
 var answerChoiceListEl = document.querySelector(".answerList");
 var timerEl = document.getElementById("timeLeft");
 var scoreCardEl = document.querySelector(".scoreCard")
-var yourFinalScoreEl = document.getElementById("yourFinalScore")
+var userFinalScoreEl = document.querySelector("#yourFinalScore")
 var scoreStickerEl = document.getElementById("scoreSticker");
+var inputInitialsEl = document.querySelector("#inputInitials");
+var ViewhighScoreBtnEl = document.getElementById("ViewhighScoreBtn");
+var submitQuizbtnEl = document.querySelector("#submitQuizbtn");
 
+//array of questions
 var questionsArray = [
     {
         questionTitle: "JavaScript written under which of the following tag",
@@ -39,32 +43,38 @@ var questionsArray = [
 
 
 //global varable 
-var score = 0;
-var timeLeft = 60;
+var score;
+var timeLeft;
 var lastQuestionIndex = questionsArray.length - 1; //this to get that last index of questionsArray
 var runningQuestion = 0; //this to get that current (running) index of questionsArray
 var timeInterval;
+var scorePerCent;
 
-
+//startquiz button EventListener
 startQuizButtonEl.addEventListener("click", () => {
     startQuiz();
 })
-
+//startquiz and function
 function startQuiz() {
-
+    scorePerCent=0; //setting scorePerCent to 0 at everytime user click on startQuiz
+    runningQuestion = 0;
+    score=0;
+    timeLeft=60;
+    countdown();
     console.log("we are inside startQuiz function");
     quizInfoEl.style.setProperty("visibility", "hidden"); //hiding the info
     questonListEl.style.setProperty("visibility", "visible"); //displaying the question box
     choiceRosponEl.style.setProperty("visibility", "visible");//displaying the question footer
     console.log("we are inside startQuiz function: set the visibility for elemnts");
     renderQuizQuestion();
-    countdown();
+  
 }
+//rendering question and function
 function renderQuizQuestion() {
     var qDisplayed = questionsArray[runningQuestion]; //getting the current question to queue
 
     questionTitleEl.textContent = qDisplayed.questionTitle; //display the question on the header
-   displayMultipleChoice(); //display all the Multiple Choice on the answerList
+    displayMultipleChoice(); //display all the Multiple Choice on the answerList
 
 }
 
@@ -79,48 +89,87 @@ function displayMultipleChoice() {
 function validatingAnswer(Useranswer) {
 
     var correctAnswer = questionsArray[runningQuestion].correctAnswer; //setting the correctAnswer
-        console.log(`inside userSelect function: ${Useranswer}`);
-        if (Useranswer == correctAnswer) {
-            choiceRosponEl.textContent = "Correct";
-            score++;
-            var finalScore = Math.round(100 * score / questionsArray.length);
-            scoreEl.textContent = finalScore;
-        }
-        else {
-            choiceRosponEl.textContent = "Wrong";
-            console.log("Wrong");
-            timeLeft = timeLeft - 10;
-            var finalScore = Math.round(100 * score / questionsArray.length);
-            scoreEl.textContent = finalScore;
-        }
-        if (runningQuestion < lastQuestionIndex) {
-            runningQuestion++;
-            renderQuizQuestion(finalScore);
-        }
-        else {
-            clearInterval(timeInterval);
-            scorecardRender();
-        }
+    console.log(`inside userSelect function: ${Useranswer}`);
+    if (Useranswer == correctAnswer) {
+        choiceRosponEl.textContent = "Correct";
+        score++;
+
+    }
+    else {
+        choiceRosponEl.textContent = "Wrong";
+        console.log("Wrong");
+        timeLeft = timeLeft - 10;
+
+    }
+    if (runningQuestion < lastQuestionIndex) {
+        runningQuestion++;
+        renderQuizQuestion();
+    }
+    else {
+        clearInterval(timeInterval);
+        scorecardRender();
+    }
 }
 
 //this function is to display the scorecard
-function scorecardRender(finalScore) {
+function scorecardRender() {
     console.log("inside scoreRender");
+    timerEl.textContent =""; //highing the timer count down
     questonListEl.style.setProperty("visibility", "hidden"); //hide the question box
     choiceRosponEl.style.setProperty("visibility", "hidden");//hide the question footer
     scoreCardEl.style.setProperty("visibility", "visible");//display scorecard
     //calculate the amount of question percent
-    var scorePerCent = Math.round(100 * score / questionsArray.length);
-    yourFinalScoreEl.textContent = scorePerCent;
-
-   /* //choose the img based on the scorepercent
-    let img = (scorePerCent >= 80) ? "/assests/images/pass.png" :
-        (scorePerCent >= 65) ? "/assests/images/pass.png" :
-            (scorePerCent <= 50) ? "../../JavaScriptQuiz/assests/images/pass.png" :
-            scoreCardEl.innerHTML = "<img src=" + img + ">";*/
-
+    scorePerCent = Math.round(100 * score / questionsArray.length);
+    userFinalScoreEl.textContent = scorePerCent;
+    console.log(`calculated the score percent and displayed in userFinalScoreEl will return the scorePerCent to scorePerCent var`);
+    return scorePerCent;
 }
 
+
+
+//EventListener for submitQuizbtnEl
+submitQuizbtnEl.addEventListener("click", function (event) {
+    event.preventDefault();
+    console.log("we are inside submitQuizbtnEl EventListener ");
+        // create userInitials and finalScore object from submission
+        var userSubmission = {
+            initials: inputInitialsEl.value.trim(),
+            SubmitScore: scorePerCent
+        }
+    // set new submission to local storage 
+  localStorage.setItem("userinitials", JSON.stringify(userSubmission.initials));
+  localStorage.setItem("userScores", JSON.stringify(userSubmission.SubmitScore));
+
+    console.log(`we are inside submitQuizbtnEl EventListener: and stored data in the localStorage`);
+    scoreCardEl.style.setProperty("visibility", "hidden");//hiding scorecard after submiting
+    quizInfoEl.style.setProperty("visibility", "visible"); //displaying quizInfoEl 
+    startQuizButtonEl.innerText = "Retake"; //allow user to retake the quiz if ther are not happy with the score
+    console.log(`we are inside submitQuizbtnEl EventListener: redisplayed quizInfoEl and updated the inner text for startQuizButtonEl to retake. to allow user to retake the quiz`);
+})
+
+//EventListener for ViewhighScoreBtnEl and get the vaule from localStorage.getItem
+ViewhighScoreBtnEl.addEventListener("click", (event) => {
+    event.preventDefault();
+
+    console.log("inside ViewhighScoreBtnEl addEventListener");
+
+    var itemKey="userinitials"; //this is the item key I have to get vaule from
+
+    //if local storage do have data continue
+    if(localStorage.getItem(itemKey) != null){
+        console.log(`inside ViewhighScoreBtnEl addEventListener: checking if localStorage have data for ${itemKey}`);
+     console.log(JSON.parse(localStorage.getItem('userScores')));
+     console.log(JSON.parse(localStorage.getItem('userinitials')));
+   
+        var getData = JSON.parse(localStorage.getItem("userScores"));
+         
+     innerHighScoreEl.innerText= `: ${getData}`;
+    }else{ //if no data was found display
+        console.log(`inside ViewhighScoreBtnEl addEventListener: localStorage did not have data for ${itemKey}`);
+        innerHighScoreEl.innerText= null;
+    }
+})
+//timer countdown function
 function countdown() {
     // Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
     timeInterval = setInterval(function () {

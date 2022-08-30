@@ -18,10 +18,7 @@ for header div section*/
     padding: 20px;
 
 }
-/*CSS vaule for headerScoreText font color*/
-#headerScoreText{
-    color: #781C68 ;
-}
+
 /*CSS vaule for to hide highScore and timeLeft inner text*/
 #headerScoreText #highScore, #timeLeft , .resultBox{
   
@@ -126,4 +123,17 @@ li:hover , button:hover{
 .submitQuizbtn{
     height:100%;
     width:100%;
+}
+
+#ViewhighScoreBtn{
+   background-color: white;
+    color: purple;
+}
+#ViewhighScoreBtn:hover{
+color: plum;
+}
+
+#quizTimerTitle{
+    margin-right: 25px;
+    padding-right: 30px;
 }

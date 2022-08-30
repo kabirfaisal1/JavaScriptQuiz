@@ -11,10 +11,10 @@
     </head>
     <body>
     
-            <header class="topHeaderSection">
+            <header method="GET" class="topHeaderSection">
                 <div class="headerParagraph">
-                    <p id="headerScoreText">View high Score: <span
-                        class="innerText" id="highScore"></span>
+                    <p id="ViewhighScoreBtn">View high scores  <span
+                        class="innerText" id="innerhighScore"></span>
                     </p>
                 </div>
                 <div class="headerParagraph" >
@@ -23,12 +23,13 @@
                     </p>
                 </div>
             </header>
+            <main  method="POST">
             <div class="middleContainer">
                 <h1 class="headerTitle" id="infoTitle">Coding Quiz Challenge</h1>
                 <p class="paragrph" id="quizRule">Try to answer the following code-related questions with the time limit. Keep in mind that incorrect answers will penalize your score/time 
                 by <span class="innerText" id="infoDescription">ten seconds!</span> 
                 </p>
-                <div id="startQuizButton"> <button class= "btn" id="startQuizbtn">Start Quiz</button> </div>     
+                <div id="startQuiz"> <button class= "btn" id="startQuizbtn">Start Quiz</button> </div>     
             </div>
             <div class="questonList">
                 <h1 class="headerTitle" id="questionTitle"></h1>
@@ -40,7 +41,7 @@
                 </ul>
                 <footer id="correctOrWrong"></footer> 
             </div>
-            <div class= "scoreCard">
+            <div method="POST" class= "scoreCard">
                 <h1 id="scoreCardHeader">All done!</h1>
                 <p id="scoreCardParagraph">Your final score is: <span
                     class="innerText" id="yourFinalScore"></span></p>
@@ -48,6 +49,7 @@
                 <label id="userInitialLabel">Enter Initials: <input type="text" id="inputInitials"></label>
                 <button class= "btn" id="submitQuizbtn">Submit</button>  
             </div>
+        </main>
        
     </body>
         <!-- <script src="../JavaScriptQuiz/assests/js/script.js"></script>-->
