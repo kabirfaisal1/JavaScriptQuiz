@@ -188,7 +188,7 @@ function countdown() {
             timerEl.textContent = '';
             // Use `clearInterval()` to stop the timer
             clearInterval(timeInterval);
-            scoreRender()
+            scorecardRender()
         }
     }, 1000);
 }
