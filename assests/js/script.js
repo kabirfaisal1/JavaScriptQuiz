@@ -40,7 +40,6 @@ var questionsArray = [
 
 //global varable 
 var score = 0;
-var answer = null;
 var timeLeft = 60;
 var lastQuestionIndex = questionsArray.length - 1; //this to get that last index of questionsArray
 var runningQuestion = 0; //this to get that current (running) index of questionsArray
@@ -66,11 +65,6 @@ function renderQuizQuestion() {
 
     questionTitleEl.textContent = qDisplayed.questionTitle; //display the question on the header
    displayMultipleChoice(); //display all the Multiple Choice on the answerList
-   
-   //function for  validating Answer after selection
-    answerChoiceListEl.addEventListener("click", (event) => {
-        validatingAnswer(event);
-    })
 
 }
 
@@ -82,13 +76,11 @@ function displayMultipleChoice() {
 }
 
 //function for  validating Answer after selection
-function validatingAnswer(event) {
-    var element = event.target;
-    var answer = questionsArray[runningQuestion].correctAnswer; //setting the correctAnswer
-    if (element.matches(".answerbtn")) {
-        var dataNumber = parseInt(element.getAttribute("data-number"));
-        console.log(`inside userSelect function: ${dataNumber}`);
-        if (answer == dataNumber) {
+function validatingAnswer(Useranswer) {
+
+    var correctAnswer = questionsArray[runningQuestion].correctAnswer; //setting the correctAnswer
+        console.log(`inside userSelect function: ${Useranswer}`);
+        if (Useranswer == correctAnswer) {
             choiceRosponEl.textContent = "Correct";
             score++;
             var finalScore = Math.round(100 * score / questionsArray.length);
@@ -109,8 +101,6 @@ function validatingAnswer(event) {
             clearInterval(timeInterval);
             scorecardRender();
         }
-    }
-
 }
 
 //this function is to display the scorecard
@@ -153,4 +143,36 @@ function countdown() {
         }
     }, 1000);
 }
+
+/*TO-DO
+
+function validatingAnswer(event) {
+    var element = event.target;
+    var answer = questionsArray[runningQuestion].correctAnswer; //setting the correctAnswer
+    if (element.matches(".answerbtn")) {
+        var dataNumber = parseInt(element.getAttribute("data-number"));
+        console.log(`inside userSelect function: ${dataNumber}`);
+        if (answer == dataNumber) {
+            choiceRosponEl.textContent = "Correct";
+            score++;
+            var finalScore = Math.round(100 * score / questionsArray.length);
+            scoreEl.textContent = finalScore;
+        }
+        else {
+            choiceRosponEl.textContent = "Wrong";
+            console.log("Wrong");
+            timeLeft = timeLeft - 10;
+            var finalScore = Math.round(100 * score / questionsArray.length);
+            scoreEl.textContent = finalScore;
+        }
+        if (runningQuestion < lastQuestionIndex) {
+            runningQuestion++;
+            renderQuizQuestion(finalScore);
+        }
+        else {
+            clearInterval(timeInterval);
+            scorecardRender();
+        }
+    }
+}*/
 
