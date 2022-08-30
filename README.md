@@ -16,7 +16,7 @@ Working on a application that build a timed coding quiz with multiple-choice que
 Everytime you run the application, you would need to refresh the screen before clicking on "Generate Password" button. 
  ### URL: 
  ```
-
+https://kabirfaisal1.github.io/JavaScriptQuiz/
  ```
 
  ### local
@@ -24,7 +24,7 @@ Everytime you run the application, you would need to refresh the screen before c
  Open terminal
  #### URL
  ```
-  open -a 'google chrome' 
+  open -a 'google chrome' https://kabirfaisal1.github.io/JavaScriptQuiz/
  
  ```
  #### clone
