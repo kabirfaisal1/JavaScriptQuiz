@@ -1,3 +1,4 @@
+
 //Selecters
 var startQuizButtonEl = document.getElementById("startQuizButton");
 var quizInfoEl = document.querySelector(".middleContainer");
@@ -26,22 +27,22 @@ var questionsArray = [
     },
     {
         questionTitle: "Which of the followings are primitive data types in JavaScript?",
-        choiceList: ["String", "Number", "Boolean","All of the above"],
+        choiceList: ["String", "Number", "Boolean", "All of the above"],
         correctAnswer: 3
     },
     {
         questionTitle: "Which of the following is NOT a JavaScript object?",
         choiceList: ["var obj ={}", "var obj ={name: 'Kabir'}", "var obj={name = 'Kabir'}", "var obj = new Object()"],
         correctAnswer: 2
-    }
+    },
 ]
 
 
 //global varable 
 var score = 0;
 var answer = null;
-var timeLeft=60;
-var lastQuestionIndex = questionsArray.length-1; //this to get that last index of questionsArray
+var timeLeft = 60;
+var lastQuestionIndex = questionsArray.length - 1; //this to get that last index of questionsArray
 var runningQuestion = 0; //this to get that current (running) index of questionsArray
 var timeInterval;
 
@@ -51,27 +52,25 @@ startQuizButtonEl.addEventListener("click", () => {
 })
 
 function startQuiz() {
- 
+
     console.log("we are inside startQuiz function");
     quizInfoEl.style.setProperty("visibility", "hidden"); //hiding the info
     questonListEl.style.setProperty("visibility", "visible"); //displaying the question box
     choiceRosponEl.style.setProperty("visibility", "visible");//displaying the question footer
     console.log("we are inside startQuiz function: set the visibility for elemnts");
-    countdown();
-
     renderQuizQuestion();
+    countdown();
 }
 function renderQuizQuestion() {
     var qDisplayed = questionsArray[runningQuestion]; //getting the current question to queue
 
     questionTitleEl.textContent = qDisplayed.questionTitle; //display the question on the header
-    displayMultipleChoice(); //display all the Multiple Choice on the answerList
-    //add Event Listener for user selected choice
-    //answer = qDisplayed.correctAnswer; //setting the correctAnswer
-        answerChoiceListEl.addEventListener("click", (event) => {
-            validatingAnswer(event);
-        //validatingAnswer(answer,event);
-        })  //function for  validating Answer after selection
+   displayMultipleChoice(); //display all the Multiple Choice on the answerList
+   
+   //function for  validating Answer after selection
+    answerChoiceListEl.addEventListener("click", (event) => {
+        validatingAnswer(event);
+    })
 
 }
 
@@ -85,27 +84,28 @@ function displayMultipleChoice() {
 //function for  validating Answer after selection
 function validatingAnswer(event) {
     var element = event.target;
-       var answer = questionsArray[runningQuestion].correctAnswer; //setting the correctAnswer
+    var answer = questionsArray[runningQuestion].correctAnswer; //setting the correctAnswer
     if (element.matches(".answerbtn")) {
         var dataNumber = parseInt(element.getAttribute("data-number"));
         console.log(`inside userSelect function: ${dataNumber}`);
-        if(answer ==  dataNumber) {
+        if (answer == dataNumber) {
             choiceRosponEl.textContent = "Correct";
             score++;
-            var finalScore = Math.round(100 * score/questionsArray.length);
+            var finalScore = Math.round(100 * score / questionsArray.length);
             scoreEl.textContent = finalScore;
         }
         else {
             choiceRosponEl.textContent = "Wrong";
             console.log("Wrong");
-          
-            timeLeft = timeLeft-10;
+            timeLeft = timeLeft - 10;
+            var finalScore = Math.round(100 * score / questionsArray.length);
+            scoreEl.textContent = finalScore;
         }
-        if(runningQuestion < lastQuestionIndex ){
+        if (runningQuestion < lastQuestionIndex) {
             runningQuestion++;
             renderQuizQuestion(finalScore);
         }
-        else{
+        else {
             clearInterval(timeInterval);
             scorecardRender();
         }
@@ -120,14 +120,15 @@ function scorecardRender(finalScore) {
     choiceRosponEl.style.setProperty("visibility", "hidden");//hide the question footer
     scoreCardEl.style.setProperty("visibility", "visible");//display scorecard
     //calculate the amount of question percent
-    var scorePerCent = Math.round(100 * score/questionsArray.length);
+    var scorePerCent = Math.round(100 * score / questionsArray.length);
     yourFinalScoreEl.textContent = scorePerCent;
 
-    //choose the img based on the scorepercent
-    let img =(scorePerCent >= 80) ? "../JavaScriptQuiz/assests/images/pass.png": 
-             (scorePerCent >= 65) ? "../JavaScriptQuiz/assests/images/pass.png": 
-             (scorePerCent <= 50) ? "../JavaScriptQuiz/assests/images/pass.png": 
-    scoreStickerEl.textContent = scorePerCent;
+   /* //choose the img based on the scorepercent
+    let img = (scorePerCent >= 80) ? "/assests/images/pass.png" :
+        (scorePerCent >= 65) ? "/assests/images/pass.png" :
+            (scorePerCent <= 50) ? "../../JavaScriptQuiz/assests/images/pass.png" :
+            scoreCardEl.innerHTML = "<img src=" + img + ">";*/
+
 }
 
 function countdown() {
