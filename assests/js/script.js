@@ -145,7 +145,6 @@ function countdown() {
 }
 
 /*TO-DO
-
 function validatingAnswer(event) {
     var element = event.target;
     var answer = questionsArray[runningQuestion].correctAnswer; //setting the correctAnswer
