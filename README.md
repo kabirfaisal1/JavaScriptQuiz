@@ -69,7 +69,7 @@ THEN I can save my initials and score
 ```
 
 ## App Screenshots
-```
+
 ![Image at start.](./images/screenshots/start.png)
 
 ![Image at correct.](./images/screenshots/correct.png)
@@ -82,4 +82,3 @@ THEN I can save my initials and score
 
 ![Image at retake.](./images/screenshots/retake.png)
 
-```
